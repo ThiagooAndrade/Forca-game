@@ -111,7 +111,7 @@ void printGallow(int gallow)
     }
 }
 
-void imprime_(char *word_screen, int word_length)
+void showWord(char *word_screen, int word_length)
 {
     for (int i = 0; i < word_length; i++)
     {
@@ -119,7 +119,7 @@ void imprime_(char *word_screen, int word_length)
     }
 }
 
-bool letrajajogada(char letter, char *played_letters, int moves)
+bool checkLetter(char letter, char *played_letters, int moves)
 {
     for (int i = 0; i < moves; i++)
     {
@@ -171,13 +171,13 @@ void init(char *word_secret, char *word_screen, char letter, char *played_letter
         printGallow(gallow);
         printf("\n");
         printf("Adivinhe a palavra: ");
-        imprime_(word_screen, word_length);
+        showWord(word_screen, word_length);
         printf("\nLetra: ");
         fflush(stdin);
         scanf("%c", &letter);
 
         // verifica se a letter ja foi jogada
-        if (letrajajogada(letter, played_letters, moves))
+        if (checkLetter(letter, played_letters, moves))
         {
             printf("Esta letra ja foi jogada anteriormente");
             sleep(2);
@@ -213,7 +213,7 @@ void init(char *word_secret, char *word_screen, char letter, char *played_letter
 
                 printf("%c ", word_screen[i]);
             }
-            printf("\n\nA palavra secreta era: ");
+            printf("\n\n\nA palavra secreta era: ");
             for (int i = 0; i < word_length; i++)
             {
                 word_screen[i] = word_secret[i];
@@ -237,7 +237,7 @@ void init(char *word_secret, char *word_screen, char letter, char *played_letter
             printGallow(gallow);
             printf("\n");
             printf("Adivinhe a palavra: ");
-            imprime_(word_screen, word_length);
+            showWord(word_screen, word_length);
             printf("\n\nVOCE ACERTOU!!\n\n");
             sleep(3);
             break;
